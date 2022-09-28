@@ -1,0 +1,28 @@
+<router-outlet></router-outlet>
+<form class="container">
+    <div *ngIf="showStep(0)">
+        <div>
+            <button (click)="increaseProduct(0)">+</button>
+            <input min="0" id="first-product" type="number" class="inputProduct" value="0">
+            <button (click)="decreaseProduct(0)">-</button>
+        </div>
+        <div>
+            <button (click)="increaseProduct(1)">+</button>
+            <input min="0" id="second-product" type="number" class="inputProduct" value="0">
+            <button (click)="decreaseProduct(1)">-</button>
+        </div>
+        <button (click)="nextPage()">Avanti</button>
+    </div>
+    <div *ngIf="showStep(1)">
+        <input type="text " placeholder="nome ">
+        <input type="email " placeholder="email ">
+        <button (click)="previousPage()">Indietro</button>
+        <button (click)="nextPage()">Avanti</button>
+    </div>
+    <div *ngIf="showStep(2)">
+        <input type="text " placeholder="via ">
+        <input type="text " placeholder="città ">
+        <button (click)="previousPage()">Indietro</button>
+        <button (click)="endOrder()">Acquista</button>
+    </div>
+</form>
