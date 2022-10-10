@@ -1,9 +1,31 @@
 import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
   })
-export class LoginComponent {
 
+export class LoginComponent {
+  data= {
+    username:'',
+    password:'',
+    rememberMe: false
+  }
+
+  invalidForm = false;
+  constructor(private readonly router: Router) { }
+  submit(formIstance: NgForm){
+   if (formIstance.form.valid) {
+     console.log(formIstance.form.invalid);
+     console.log(formIstance.valid);
+     
+    this.router.navigate(["home"])
+   }
+   else{
+     this.invalidForm = true;
+   }
+  }
 }
+

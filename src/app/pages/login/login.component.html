@@ -1,3 +1,22 @@
-LOGIN
-<a routerLink="/home">HOME</a><br>
-<a routerLink="./sub">sub</a>
+<div class="row">
+    <form #loginForm="ngForm" (ngSubmit)="submit(loginForm)" class="needs-validation col-4 mx-auto mt-5" [class.was-validated]="invalidForm">
+        <div class="form-floating">
+            <input class="form-control" type="email" id="username" #email="ngModel" placeholder=" insert email " name="username " [(ngModel)]="data.username " required>
+            <label for="username ">Username</label>
+            <div class="invalid-feedback">Please fill out this field.</div>
+
+
+        </div>
+        <div class="form-floating ">
+            <input class="form-control " autofocus type="password " id="password " name="password " placeholder="insert password " [(ngModel)]="data.password " required>
+            <label for="password ">Password</label>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div>
+            <input type="checkbox" name="rememberMe" id="rememberMe">
+            <label for="rememberMe">rememberMe</label>
+        </div>
+        <button class="btn btn-primary" type="submit ">Send</button>
+    </form>
+
+</div>

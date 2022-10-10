@@ -7,14 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-import { SubLoginComponent } from './pages/sub/sub.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    SubLoginComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
