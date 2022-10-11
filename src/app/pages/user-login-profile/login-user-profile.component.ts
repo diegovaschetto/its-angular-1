@@ -14,7 +14,7 @@ export class LoginUserComponent {
     PF: {
       name: "",
       surname: "",
-      differentAddress: "no",
+      differentAddress: false,
       typeOfStreet: "",
       nameOfStreet: "",
       numberOfStreet: "",
@@ -35,7 +35,13 @@ export class LoginUserComponent {
     local: "",
     city: "",
     province: "",
-    state: ""
+    state: "",
+    email:"",
+    FAX:"",
+    number:""
   }
+
+  showError= false
+
 }
 
