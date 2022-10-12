@@ -1,294 +1,213 @@
 <div class="row">
-    <form class="needs-validation col-6 mx-auto mt-5" [class.was-validated]="showError" (ngSubmit)="showError = !showError" #loginForm="ngForm">
+    <form #myForm="ngForm" class="needs-validation col-6 mx-auto mt-5" [class.was-validated]="showError" (ngSubmit)="submit(myForm)" #loginForm="ngForm">
         <div>
             <h2 class="">TIPOLOGIA CLIENTE</h2>
             <label for="typeOfUser">Privato/Società *</label>
-            <select
-            class="form-control"
-                name="typeOfUser"
-                id="typeOfUser"
-                [(ngModel)]="typeOfUser"
-                placeholder="Seleziona un'opzione"
-                required
-            >
+            <select class="form-control" name="typeOfUser" id="typeOfUser" (change)="reset(myForm)" [(ngModel)]="typeOfUser" required>
                 <option value="PF" selected>Privato</option>
                 <option value="PG">Societa</option>
             </select>
             <div *ngIf="typeOfUser === 'PF'; else PG" class="mt-3">
+                <div>
+                    <label for="CF">Codice fiscale</label>
+                    <input minlength="16" maxlength="16" class="form-control" type="text" id="CF" name="CF" [(ngModel)]="data.PF.CF" required />
+                </div>
                 <h2>Dati personali</h2>
                 <div>
-                    <label for="name">Scrivi il tuo nome</label>
-                    <input
-                    class="form-control"
-                        type="text"
-                        id="name"
-                        name="name"
-                        [(ngModel)]="data.PF.name"
-                        required
-                    />
+                    <label for="gender ">Il / la</label>
+                    <select class="form-control " name="gender " id="gender " [(ngModel)]="data.PF.gender " required>
+                        <option value="male ">Sig.</option>
+                        <option value="female ">Sig.ra</option>
+                    </select>
                 </div>
                 <div>
-                    <label for="surname">Scrivi il tuo cognome</label>
-                    <input
-                    class="form-control"
-                        type="text"
-                        id="surname"
-                        name="surname"
-                        [(ngModel)]="data.PF.surname"
-                        required
-                    />
+                    <label for="name ">Scrivi il tuo nome</label>
+                    <input class="form-control " type="text " id="name " name="name " [(ngModel)]="data.PF.name " required />
                 </div>
-                <div class="mt-3">
+                <div>
+                    <label for="surname ">Scrivi il tuo cognome</label>
+                    <input class="form-control " type="text " id="surname " name="surname " [(ngModel)]="data.PF.surname " required />
+                </div>
+                <div class="mt-3 ">
                     <h2>Dati di residenza</h2>
 
                     <div>
-                        <label for="typeOfStreet">Scrivi il tipo di via</label>
-                        <input
-                        class="form-control"
-                            type="text"
-                            id="typeOfStreet"
-                            name="typeOfStreet"
-                            [(ngModel)]="data.typeOfStreet"
-                            placeholder="Via/Strada/Piazza .."
-                            required
-                        />
+                        <label for="typeOfStreet ">Scrivi il tipo di via</label>
+                        <input class="form-control " type="text " id="typeOfStreet " name="typeOfStreet " [(ngModel)]="data.typeOfStreet " placeholder="Via/Strada/Piazza .. " required />
                     </div>
                     <div>
-                        <label for="nameOfStreet">Via</label>
-                        <input
-                        class="form-control"
-                            type="text"
-                            id="nameOfStreet"
-                            name="nameOfStreet"
-                            [(ngModel)]="data.nameOfStreet"
-                            required
-                        />
+                        <label for="nameOfStreet ">Via</label>
+                        <input class="form-control " type="text " id="nameOfStreet " name="nameOfStreet " [(ngModel)]="data.nameOfStreet " required />
                     </div>
                     <div>
-                        <label for="numberOfStreet">Numero</label>
-                        <input
-                        class="form-control"
-                            type="text"
-                            id="numberOfStreet"
-                            name="numberOfStreet"
-                            [(ngModel)]="data.numberOfStreet"
-                            required
-                        />
+                        <label for="numberOfStreet ">Numero</label>
+                        <input class="form-control " type="text " id="numberOfStreet " name="numberOfStreet " [(ngModel)]="data.numberOfStreet " required />
                     </div>
                     <div>
-                        <label for="CAP">CAP</label>
-                        <input
-                        class="form-control"
-                            type="number"
-                            id="CAP"
-                            name="CAP"
-                            [(ngModel)]="data.CAP"
-                            required
-                        />
+                        <label for="CAP ">CAP</label>
+                        <input class="form-control " type="number " id="CAP " name="CAP " [(ngModel)]="data.CAP " required />
                     </div>
                     <div>
-                        <label for="local">Località</label>
-                        <input
-                        class="form-control"
-                            type="text"
-                            id="local"
-                            name="local"
-                            [(ngModel)]="data.local"
-                        />
+                        <label for="local ">Località</label>
+                        <input class="form-control " type="text " id="local " name="local " [(ngModel)]="data.local " />
                     </div>
                     <div>
-                        <label for="city">Città</label>
-                        <input
-                        class="form-control"
-                            type="text"
-                            id="city"
-                            name="city"
-                            [(ngModel)]="data.city"
-                            required
-                        />
+                        <label for="city ">Città</label>
+                        <input class="form-control " type="text " id="city " name="city " [(ngModel)]="data.city " required />
                     </div>
                     <div>
-                        <label for="province">Provincia</label>
-                        <input
-                        class="form-control"
-                            type="text"
-                            id="province"
-                            name="province"
-                            [(ngModel)]="data.province"
-                            required
-                        />
+                        <label for="province ">Provincia</label>
+                        <input class="form-control " type="text " id="province " name="province " [(ngModel)]="data.province " required />
                     </div>
                     <div>
-                        <label for="state">Stato</label>
-                        <input
-                        class="form-control"
-                            type="text"
-                            id="state"
-                            name="state"
-                            [(ngModel)]="data.state"
-                            required
-                        />
+                        <label for="state ">Stato</label>
+                        <input class="form-control " type="text " id="state " name="state " [(ngModel)]="data.state " required />
                     </div>
                     <div>
-                        <label for="differentAddress"
-                            >Hai un domicilio diverso dalla residenza?</label
+                        <label for="differentAddress ">Hai un domicilio diverso dalla residenza?</label
                         >
                         <select
-                        class="form-control"
-                            name="differentAddress"
-                            id="differentAddress"
-                            name="differentAddress"
-                            (change)="
-                                data.PF.differentAddress =
-                                    !data.PF.differentAddress
-                            "
+                        class="form-control "
+                            name="differentAddress "
+                            id="differentAddress "
+                            name="differentAddress "
+                            (change)=" data.PF.differentAddress=! data.PF.differentAddress "
                             required
                         >
-                            <option value="true">Si</option>
-                            <option value="false" selected>No</option>
+                            <option value="true ">Si</option>
+                            <option value="false " selected>No</option>
                         </select>
-                        <div *ngIf="data.PF.differentAddress">
+                        <div *ngIf="data.PF.differentAddress ">
                             <h2>domicilio</h2>
                             <div>
-                                <label for="typeOfStreet"
+                                <label for="typeOfStreet "
                                     >Scrivi il tipo di via</label
                                 >
                                 <input
-                                    type="text"
-                                    id="typeOfStreet"
-                                    name="typeOfStreet"
-                                    [(ngModel)]="data.PF.typeOfStreet"
-                                    placeholder="Via/Strada/Piazza .."
+                                class="form-control "
+                                    type="text "
+                                    id="typeOfStreet "
+                                    name="typeOfStreet "
+                                    [(ngModel)]="data.PF.typeOfStreet "
+                                    placeholder="Via/Strada/Piazza .. "
                                     required
                                 />
                             </div>
                             <div>
-                                <label for="nameOfStreet">Via</label>
-                                <input
-                                    type="text"
-                                    id="nameOfStreet"
-                                    name="nameOfStreet"
-                                    [(ngModel)]="data.PF.nameOfStreet"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label for="numberOfStreet">Numero</label>
-                                <input
-                                    type="text"
-                                    id="numberOfStreet"
-                                    name="numberOfStreet"
-                                    [(ngModel)]="data.PF.numberOfStreet"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label for="CAP">CAP</label>
-                                <input
-                                    type="number"
-                                    id="CAP"
-                                    name="CAP"
-                                    [(ngModel)]="data.PF.CAP"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label for="local">Località</label>
-                                <input
-                                    type="text"
-                                    id="local"
-                                    name="local"
-                                    [(ngModel)]="data.PF.local"
-                                />
-                            </div>
-                            <div>
-                                <label for="city">Città</label>
-                                <input
-                                    type="text"
-                                    id="city"
-                                    name="city"
-                                    [(ngModel)]="data.PF.city"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label for="province">Provincia</label>
-                                <input
-                                    type="text"
-                                    id="province"
-                                    name="province"
-                                    [(ngModel)]="data.PF.province"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label for="state">Stato</label>
-                                <input
-                                    type="text"
-                                    id="state"
-                                    name="state"
-                                    [(ngModel)]="data.PF.state"
-                                    required
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h2>Recapiti</h2>
-                    <div>
-                        <label for="email">Email</label>
-                        <input
-                        class="form-control"
-                            type="email"
-                            name="email"
-                            id="email"
-                            [(ngModel)]="data.email"
-                            required
-                        />
+                                <label for="nameOfStreet ">Via</label>
+                        <input class="form-control " type="text " id="nameOfStreet " name="nameOfStreet " [(ngModel)]="data.PF.nameOfStreet " required />
                     </div>
                     <div>
-                        <label for="FAX">FAX</label>
-                        <input
-                        class="form-control"
-                            type="number"
-                            name="FAX"
-                            id="FAX"
-                            [(ngModel)]="data.FAX"
-                        />
+                        <label for="numberOfStreet ">Numero</label>
+                        <input class="form-control " type="text " id="numberOfStreet " name="numberOfStreet " [(ngModel)]="data.PF.numberOfStreet " required />
                     </div>
                     <div>
-                        <label for="number">Numero</label>
-                        <input
-                        class="form-control"
-                            type="tel"
-                            name="number"
-                            id="number"
-                            [(ngModel)]="data.number"
-                            required
-                        />
+                        <label for="CAP ">CAP</label>
+                        <input class="form-control " type="number " id="CAP " name="CAP " [(ngModel)]="data.PF.CAP " required />
+                    </div>
+                    <div>
+                        <label for="local ">Località</label>
+                        <input class="form-control " type="text " id="local " name="local " [(ngModel)]="data.PF.local " />
+                    </div>
+                    <div>
+                        <label for="city ">Città</label>
+                        <input class="form-control " type="text " id="city " name="city " [(ngModel)]="data.PF.city " required />
+                    </div>
+                    <div>
+                        <label for="province ">Provincia</label>
+                        <input class="form-control " type="text " id="province " name="province " [(ngModel)]="data.PF.province " required />
+                    </div>
+                    <div>
+                        <label for="state ">Stato</label>
+                        <input class="form-control " type="text " id="state " name="state " [(ngModel)]="data.PF.state " required />
                     </div>
                 </div>
             </div>
-            <ng-template #PG>
-                <div>
-                    <label for="companyName"
-                        >Scrivi la tua ragione sociale</label
+        </div>
+        <div class="mt-3 ">
+            <h2>Recapiti</h2>
+            <div>
+                <label for="email ">Email</label>
+                <input class="form-control " type="email " name="email " id="email " [(ngModel)]="data.email " required />
+            </div>
+            <div>
+                <label for="FAX ">FAX</label>
+                <input class="form-control " type="number " name="FAX " id="FAX " [(ngModel)]="data.FAX " />
+            </div>
+            <div>
+                <label for="number ">Numero</label>
+                <input class="form-control " type="tel " name="number " id="number " [(ngModel)]="data.number " required />
+            </div>
+        </div>
+</div>
+<ng-template #PG>
+    <div>
+        <label for="companyName ">Scrivi la tua ragione sociale</label
                     >
                     <input
-                    class="form-control"
-                        type="text"
-                        id="companyName"
-                        name="companyName"
-                        [(ngModel)]="data.PG.companyName"
+                    class="form-control "
+                        type="text "
+                        id="companyName "
+                        name="companyName "
+                        [(ngModel)]="data.PG.companyName "
                         required
                     />
                 </div>
-            </ng-template>
+                <div>
+                    <h2>Dati di residenza</h2>
+
+                    <div>
+                        <label for="typeOfStreet ">Scrivi il tipo di via</label>
+        <input class="form-control " type="text " id="typeOfStreet " name="typeOfStreet " [(ngModel)]="data.typeOfStreet " placeholder="Via/Strada/Piazza .. " required />
+    </div>
+    <div>
+        <label for="nameOfStreet ">Via</label>
+        <input class="form-control " type="text " id="nameOfStreet " name="nameOfStreet " [(ngModel)]="data.nameOfStreet " required />
+    </div>
+    <div>
+        <label for="numberOfStreet ">Numero</label>
+        <input class="form-control " type="text " id="numberOfStreet " name="numberOfStreet " [(ngModel)]="data.numberOfStreet " required />
+    </div>
+    <div>
+        <label for="CAP ">CAP</label>
+        <input class="form-control " type="number " id="CAP " name="CAP " [(ngModel)]="data.CAP " required />
+    </div>
+    <div>
+        <label for="local ">Località</label>
+        <input class="form-control " type="text " id="local " name="local " [(ngModel)]="data.local " />
+    </div>
+    <div>
+        <label for="city ">Città</label>
+        <input class="form-control " type="text " id="city " name="city " [(ngModel)]="data.city " required />
+    </div>
+    <div>
+        <label for="province ">Provincia</label>
+        <input class="form-control " type="text " id="province " name="province " [(ngModel)]="data.province " required />
+    </div>
+    <div>
+        <label for="state ">Stato</label>
+        <input class="form-control " type="text " id="state " name="state " [(ngModel)]="data.state " required />
+    </div>
+    </div>
+    <div class="mt-3 ">
+        <h2>Recapiti</h2>
+        <div>
+            <label for="email ">Email</label>
+            <input class="form-control " type="email " name="email " id="email " [(ngModel)]="data.email " required />
         </div>
-        <button type="submit">Invia</button>
-    </form>
+        <div>
+            <label for="FAX ">FAX</label>
+            <input class="form-control " type="number " name="FAX " id="FAX " [(ngModel)]="data.FAX " />
+        </div>
+        <div>
+            <label for="number ">Numero</label>
+            <input class="form-control " type="tel " name="number " id="number " [(ngModel)]="data.number " required />
+        </div>
+    </div>
+</ng-template>
 </div>
-<pre>
-    {{ data | json }}
-</pre>
+<div class="text-center my-3 ">
+    <button class="btn col-6 btn-primary " type="submit ">Invia</button>
+</div>
+</form>
+</div>
