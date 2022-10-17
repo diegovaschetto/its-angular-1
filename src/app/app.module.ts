@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginUserComponent } from './pages/user-login-profile/login-user-profile.component';
+import DrinksComponent from './pages/drinks/drinks.component';
+import DrinkComponent from './pages/drink/drink.component';
 
 
 @NgModule({
@@ -15,13 +18,16 @@ import { LoginUserComponent } from './pages/user-login-profile/login-user-profil
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LoginUserComponent
+    LoginUserComponent,
+    DrinksComponent,
+    DrinkComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
