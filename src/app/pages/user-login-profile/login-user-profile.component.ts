@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login-user-profile',
@@ -10,8 +10,20 @@ import { Router } from '@angular/router';
 export class LoginUserComponent {
   typeOfUser = "PF"
 
+  reset=(form:NgForm)=> {
+    form.form.markAsPristine()
+    this.showError = false
+  }
+  submit = (form: NgForm) => {
+    if(form.invalid){
+      this.showError = true
+    }
+  }
+
   data = {
     PF: {
+      gender:"FM",
+      CF:"",
       name: "",
       surname: "",
       differentAddress: false,
