@@ -27,7 +27,7 @@ import DrinkComponent from './pages/drink/drink.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

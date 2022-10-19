@@ -1,3 +1,16 @@
-<div *ngFor="let drink of drinks">
-    <a [routerLink]="['/drink/',drink.idDrink]">ciao</a>
+<div class="input-group my-3 w-50 mx-auto">
+    <input [(ngModel)]="userSearch" autofocus type="text" class="autofocused form-control" placeholder="Digita qui ..." aria-label="Example text with button addon" aria-describedby="button-addon1">
+    <button (click)="searchCocktail()" class="btn btn-primary" type="submit" id="button-addon1">Cerca cocktail</button>
+</div>
+
+<div class="container-lg">
+    <div class="row g-1 d-flex justify-content-evenly ">
+        <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]" class=" col-12 col-sm-5 col-md-3 m-2 card ">
+            <div class="card-body text-center ">
+                <h2 class="card-title ">{{drink.strDrink}}</h2>
+                <img [src]="drink.strDrinkThumb " [alt]=" 'picture of ' + drink.strDrink " class="img-thumbnail card-img-top ">
+            </div>
+            <a class="btn btn-primary w-75 mx-auto mb-2 ">Dettaglio</a>
+        </div>
+    </div>
 </div>

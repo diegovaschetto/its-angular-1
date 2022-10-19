@@ -1,33 +1,40 @@
-import { Component, OnInit } from "@angular/core"
-import { HttpClient } from "@angular/common/http"
+import { Component} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-interface Drinks  {
-    drinks:[]
+interface Drink {
+    idDrink: string;
+    strDrinkThumb: string;
+    strDrink: string;
+    strAlcoholic: string;
 }
 
+
+interface Drinks {
+    drinks: Drink[];
+}
 
 @Component({
-    selector:"app-drinks",
-    templateUrl:"./drinks.component.html",
-    styleUrls:["./drinks.component.scss"]
+    selector: 'app-drinks',
+    templateUrl: './drinks.component.html',
+    styleUrls: ['./drinks.component.scss'],
 })
-class DrinksComponent implements OnInit{
+class DrinksComponent  {
+    constructor(private httpClient: HttpClient) {}
 
-    constructor(private httpClient: HttpClient){
-    }
-    
-    drinks:{idDrink:string}[] = []
-    idDrink:string = ""
+    drinks: Drink[] = [];
+    idDrink: string = '';
+    userSearch: string = ""
 
-    ngOnInit (): void {
-        const URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a"
+
+    searchCocktail = () => {
+        const URL =
+            'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=' + this.userSearch;
         this.httpClient
-            .get(URL)
-            .subscribe((response:Partial<Drinks>) =>
-            {if(response.drinks)this.drinks=response.drinks})
-    }
-
-
+            .get(URL) //metodo get ha un solo parametro che è url, in modello restFul, restituisce un'observable => prevedono possibilità di averer più valori e viene gestito con subscribe() che sarebbe come iscriversi ad una nuova newsletter e stare in ascolto per tutte volte che viene rilasciata una nuova newsletter
+            .subscribe((response: Partial<Drinks>) => {
+                if (response.drinks) this.drinks = response.drinks;
+            });
+    };
 }
 
-export default DrinksComponent
+export default DrinksComponent;

@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core"
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from "@angular/common/http";
 
-
+interface DrinkApi {
+    drinks:[]
+}
 
 @Component({
     selector:"app-drink",
@@ -10,19 +13,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 class DrinkComponent implements OnInit {
 
-    constructor(private route: ActivatedRoute ){
+    constructor(private http:HttpClient, private route: ActivatedRoute ){
     }
 
     idDrink:any=""
-    idDrink2:any=""
+    drink:DrinkApi = {drinks:[]}
+    
     ngOnInit(): void {
-        this.idDrink = this.route.snapshot.paramMap.get("idDrink")
-        console.log(this.route);
-
-
+        const urlRoot= "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
         this.route.paramMap.subscribe(params => {
-            console.log(params)
+            this.idDrink = params.get('idDrink')
           })
+
+        this.http
+            .get(urlRoot+this.idDrink)
+            .subscribe((response:Partial<DrinkApi>) => {
+                console.log(response)
+            })
         
     }
 
