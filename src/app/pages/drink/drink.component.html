@@ -1,2 +1,14 @@
-<div>{{idDrink}}</div>
-<a routerLink="/">Torna alla lista dei drinks</a>
+<a class="btn btn-primary m-3" routerLink="/">Torna alla lista dei drinks</a>
+<div class="row">
+    <div class="mx-auto card col-11 col-sm-7 col-md-5">
+        <h2 class="card-header text-center">{{drink.strDrink}}</h2>
+        <div class="card-body">
+            <img [src]="drink.strDrinkThumb" alt="" class="card-img">
+            <p class="card-text text-muted mt-3">{{drink.strInstructionsIT}}</p>
+            <h3 class="text-center">Ingredienti</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let prop of ingredientsList">{{printIngredients(prop)}}</li>
+              </ul>
+        </div>
+    </div>
+</div>
