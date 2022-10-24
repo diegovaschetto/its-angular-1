@@ -56,11 +56,17 @@ class DrinkComponent implements OnInit {
                 
                 this.ingredientsList.push(ingredientAndMeasure)
             }
+
         }
+        console.log(this.drink)
     }
 
-    printIngredients = (ingredient:IngredientAndMeasure) => {
-        return(ingredient.name + " " + ingredient.measure)
+    printIngredientsName = (ingredient:IngredientAndMeasure) => {
+        return ingredient.name
+    }
+
+    printIngredientsMeasure = (ingredient:IngredientAndMeasure) => {
+        return ingredient.measure
     }
 }
 

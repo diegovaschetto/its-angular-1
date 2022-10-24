@@ -1,7 +1,7 @@
-import { Component} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit} from '@angular/core';
+import { ApiService } from 'src/app/_service/api.service';
 
-interface Drink {
+export interface Drink {
     idDrink: string;
     strDrinkThumb: string;
     strDrink: string;
@@ -9,7 +9,7 @@ interface Drink {
 }
 
 
-interface Drinks {
+export interface Drinks {
     drinks: Drink[];
 }
 
@@ -18,20 +18,32 @@ interface Drinks {
     templateUrl: './drinks.component.html',
     styleUrls: ['./drinks.component.scss'],
 })
-class DrinksComponent  {
-    constructor(private httpClient: HttpClient) {}
+class DrinksComponent implements OnInit  {
+    constructor(private service: ApiService) {}
+    ngOnInit(): void {
+      this.searchCocktailByLetter('a')
+    }
 
     drinks: Drink[] = [];
-    idDrink: string = '';
-    userSearch: string = ""
+    idDrink = '';
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    selected = ""
+    errorNotFound = false
 
 
-    searchCocktail = () => {
-        const URL =
-            'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=' + this.userSearch;
-        this.httpClient
-            .get(URL) //metodo get ha un solo parametro che è url, in modello restFul, restituisce un'observable => prevedono possibilità di averer più valori e viene gestito con subscribe() che sarebbe come iscriversi ad una nuova newsletter e stare in ascolto per tutte volte che viene rilasciata una nuova newsletter
-            .subscribe((response: Partial<Drinks>) => {
+    searchCocktailByLetter = (letter:string) => {
+        this.drinks.length=0
+        this.selected=letter
+            this.service.searchCocktailByFirstLetter(letter).subscribe((response: Partial<Drinks>) => {
+                if (response.drinks) this.drinks = response.drinks;
+                !response.drinks?.length? this.errorNotFound= true : this.errorNotFound=false
+                console.log(this.drinks);
+                
+            });
+    };
+
+    searchCocktailRandom = () => {
+            this.service.searchCocktailRandom().subscribe((response: Partial<Drinks>) => {
                 if (response.drinks) this.drinks = response.drinks;
             });
     };

@@ -1,16 +1,52 @@
-<div class="input-group my-3 w-50 mx-auto">
-    <input [(ngModel)]="userSearch" autofocus type="text" class="autofocused form-control" placeholder="Digita qui ..." aria-label="Example text with button addon" aria-describedby="button-addon1">
-    <button (click)="searchCocktail()" class="btn btn-primary" type="submit" id="button-addon1">Cerca cocktail</button>
-</div>
-
-<div class="container-lg">
-    <div class="row g-1 d-flex justify-content-evenly ">
-        <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]" class=" col-12 col-sm-5 col-md-3 m-2 card ">
-            <div class="card-body text-center ">
-                <h2 class="card-title ">{{drink.strDrink}}</h2>
-                <img [src]="drink.strDrinkThumb " [alt]=" 'picture of ' + drink.strDrink " class="img-thumbnail card-img-top ">
+<div class="container">
+    <div class="row mt-3 gy-4 mx-2">
+        <div class="col-12 p-0 ">
+            <div class="alert alert-secondary d-flex justify-content-around">
+                <span class="text-center">
+                The cocktailDB    
+                </span>
+                    <button [routerLink]="['/search']" class="btn btn-outline-primary align-self-flex-start" type="submit" id="button-addon1">Cerca
+                        cocktail</button>
             </div>
-            <a class="btn btn-primary w-75 mx-auto mb-2 ">Dettaglio</a>
+        </div>
+        <div class="col-12 p-0">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-9">
+                    <nav aria-label="Page navigation example" class="d-inline-block">
+                        <ul class="pagination d-flex flex-wrap justify-content-center justify-content-md-start">
+                            <li *ngFor="let letter of alphabet" [class.active]="letter === selected" class="page-item">
+                                <a role="button" (click)="searchCocktailByLetter(letter)"
+                                    class="page-link">{{letter}}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-12 col-md-3 col-lg-auto">
+                    <button class="btn btn-primary w-auto" (click)="searchCocktailRandom()">
+                        Cocktail del Giorno</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lead p-0">
+            <p>Numero di risultati: <span>{{drinks.length}}</span></p>
+        </div>
+        <div class="col-12 alert alert-warning" *ngIf="errorNotFound">Nessun risultato per questa lettera</div>
+        <div class="col-12 p-0 ">
+            <div class="row g-4 d-flex justify-content-center justify-content-md-start">
+                <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]"
+                    class=" col-10 col-sm-6 col-md-3 col-lg-3">
+                    <div class="card">
+                        <div class="card-body text-center ">
+                            <h2 class="card-title ">{{drink.strDrink}}</h2>
+                            <img [src]="drink.strDrinkThumb " [alt]=" 'picture of ' + drink.strDrink "
+                                class="img-thumbnail card-img-top ">
+                        </div>
+                        <a class="btn btn-primary w-75 mx-auto mb-2 ">Dettaglio</a>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

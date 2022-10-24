@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoginUserComponent } from './pages/user-login-profile/login-user-profile.component';
 import DrinksComponent from './pages/drinks/drinks.component';
 import DrinkComponent from './pages/drink/drink.component';
+import { SearchComponent } from './pages/search/search.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import DrinkComponent from './pages/drink/drink.component';
     LoginComponent,
     LoginUserComponent,
     DrinksComponent,
-    DrinkComponent
+    DrinkComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
