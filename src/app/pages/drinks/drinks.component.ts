@@ -29,20 +29,22 @@ class DrinksComponent implements OnInit  {
     alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
     selected = ""
     errorNotFound = false
-
+    randomCocktail = false 
 
     searchCocktailByLetter = (letter:string) => {
+        this.randomCocktail = false
         this.drinks.length=0
         this.selected=letter
             this.service.searchCocktailByFirstLetter(letter).subscribe((response: Partial<Drinks>) => {
                 if (response.drinks) this.drinks = response.drinks;
                 !response.drinks?.length? this.errorNotFound= true : this.errorNotFound=false
-                console.log(this.drinks);
                 
             });
     };
 
     searchCocktailRandom = () => {
+        this.selected= ""
+        this.randomCocktail = true
             this.service.searchCocktailRandom().subscribe((response: Partial<Drinks>) => {
                 if (response.drinks) this.drinks = response.drinks;
             });

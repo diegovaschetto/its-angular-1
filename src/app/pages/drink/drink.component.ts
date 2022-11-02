@@ -58,16 +58,12 @@ class DrinkComponent implements OnInit {
             }
 
         }
-        console.log(this.drink)
+       
     }
 
-    printIngredientsName = (ingredient:IngredientAndMeasure) => {
-        return ingredient.name
-    }
-
-    printIngredientsMeasure = (ingredient:IngredientAndMeasure) => {
-        return ingredient.measure
-    }
+   regExpSearch=(name:string) => {
+    return name.replace(/\s/g,'_').toLowerCase()
+   }
 }
 
 export default DrinkComponent;

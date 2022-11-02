@@ -6,13 +6,19 @@
 </div>
 
 <div class="container-lg">
-    <div class="row g-1 d-flex justify-content-evenly ">
-        <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]" class=" col-12 col-sm-5 col-md-3 m-2 card ">
-            <div class="card-body text-center ">
-                <h2 class="card-title ">{{drink.strDrink}}</h2>
-                <img [src]="drink.strDrinkThumb " [alt]=" 'picture of ' + drink.strDrink " class="img-thumbnail card-img-top ">
+    <div class="row g-4 d-flex justify-content-center justify-content-md-start">
+        <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]"
+            class=" col-10 col-sm-6 col-md-3 col-lg-3">
+            <div class="card">
+                <div class="card-body text-center ">
+                    <h2 class="card-title ">{{drink.strDrink}}</h2>
+                    <img [src]="drink.strDrinkThumb " [alt]=" 'picture of ' + drink.strDrink "
+                        class="img-thumbnail card-img-top ">
+                </div>
+                <a class="btn btn-primary w-75 mx-auto mb-2 ">Dettaglio</a>
             </div>
-            <a class="btn btn-primary w-75 mx-auto mb-2 ">Dettaglio</a>
+
         </div>
     </div>
 </div>
+

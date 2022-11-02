@@ -12,6 +12,7 @@ import { LoginUserComponent } from './pages/user-login-profile/login-user-profil
 import DrinksComponent from './pages/drinks/drinks.component';
 import DrinkComponent from './pages/drink/drink.component';
 import { SearchComponent } from './pages/search/search.component';
+import { IngredientComponent } from './pages/ingredient/ingredient.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SearchComponent } from './pages/search/search.component';
     LoginUserComponent,
     DrinksComponent,
     DrinkComponent,
-    SearchComponent
+    SearchComponent,
+    IngredientComponent
   ],
   imports: [
     BrowserModule,

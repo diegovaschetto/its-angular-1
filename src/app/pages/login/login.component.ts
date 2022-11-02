@@ -14,6 +14,7 @@ export class LoginComponent {
     rememberMe: false
   }
 
+  showPassword = false;
   invalidForm = false;
   constructor(private readonly router: Router) { }
   submit(formIstance: NgForm){

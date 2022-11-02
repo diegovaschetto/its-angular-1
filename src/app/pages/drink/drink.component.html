@@ -7,7 +7,7 @@
             <p class="card-text text-muted mt-3">{{drink.strInstructionsIT}}</p>
             <h3 class="text-center">Ingredienti</h3>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" *ngFor="let prop of ingredientsList"><a class="link-primary" [routerLink]="['/ingredient', printIngredientsName(prop).replace(' ','').toLowerCase()]">{{printIngredientsName(prop)}}</a> {{printIngredientsMeasure(prop)}}</li>
+                <li class="list-group-item" *ngFor="let prop of ingredientsList"><a class="link-primary" [routerLink]="['/ingredient', regExpSearch(prop.name)]">{{prop.name}}</a> {{prop.measure}}</li>
               </ul>
         </div>
     </div>
