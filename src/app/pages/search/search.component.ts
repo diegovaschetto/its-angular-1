@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ApiService } from 'src/app/_service/api.service';
 
 
@@ -14,21 +14,33 @@ interface Drinks {
     drinks: Drink[];
 }
 
+interface Ingredientlist {
+    strIngredient1: string
+}
+
 
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
 })
-export class SearchComponent  {
+export class SearchComponent implements OnInit  {
     constructor(private service: ApiService) {}
 
     drinks: Drink[] = [];
+    ingredientList: Ingredientlist[] = []
     idDrink = '';
+
     jsonIn = {
         name:"",
         ingredient:""
     }
     
+    ngOnInit(): void {
+        this.service.searchListIngredient().subscribe((response: Partial<{ drinks: Ingredientlist[] }>)=>{
+            if(response.drinks) this.ingredientList = response.drinks
+        })
+    }
+
 
     searchCocktailByName = () => {
             this.service.searchCocktailByName(this.jsonIn.name).subscribe((response: Partial<Drinks>) => {

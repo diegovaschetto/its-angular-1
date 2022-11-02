@@ -27,4 +27,8 @@ export class ApiService {
         const URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php' ;
         return this.httpClient.get(URL)  //metodo get ha un solo parametro che è url, in modello restFul, restituisce un'observable => prevedono possibilità di averer più valori e viene gestito con subscribe() che sarebbe come iscriversi ad una nuova newsletter e stare in ascolto per tutte volte che viene rilasciata una nuova newsletter
     }
+
+    searchListIngredient(){
+        return this.httpClient.get("https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list")
+    }
 }
