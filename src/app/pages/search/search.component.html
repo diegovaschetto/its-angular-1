@@ -1,8 +1,9 @@
 <div class="row w-50 m-5">
     <input type="text" class="form-control" name="name" placeholder="Cerca per nome" [(ngModel)]="jsonIn.name">
     <button class="btn btn-primary"  (click)="searchCocktailByName()">Cerca</button>
-    <select name="" id="">
-        <option value=""></option>
+    <select name="ingredient" [(ngModel)]="jsonIn.ingredient" (change)="searchCocktailByIngredient()">
+        <option value="" disabled>Select one ..</option>
+        <option *ngFor="let ingredient of ingredientList" [value]="ingredient">{{ingredient}}</option>
     </select>
 </div>
 
@@ -20,6 +21,9 @@
             </div>
 
         </div>
+        <div class="col-12 alert alert-warning" *ngIf="!this.drinks.length">Nessun risultato per questa lettera</div>
     </div>
 </div>
+
+
 

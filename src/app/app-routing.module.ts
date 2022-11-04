@@ -13,10 +13,11 @@ const routes: Routes = [
   {path:"home", component: HomeComponent},
   {path:"login-user", component: LoginUserComponent},
   {path:"drinks", component: DrinksComponent},
+  {path:"drinks/:letter", component: DrinksComponent},
   {path:"search", component: SearchComponent},
   {path:"drink/:idDrink", component: DrinkComponent},
   {path:"ingredient/:ingredient", component: IngredientComponent},
-  { path: '',   redirectTo: 'drinks', pathMatch: 'full' },
+  { path: '',   redirectTo: 'drinks/a', pathMatch: 'full' },
   { path: '**', component: DrinksComponent }
 ];
 

@@ -27,32 +27,41 @@ export class SearchComponent implements OnInit  {
     constructor(private service: ApiService) {}
 
     drinks: Drink[] = [];
-    ingredientList: Ingredientlist[] = []
+    ingredientList: string[] = []
     idDrink = '';
 
     jsonIn = {
         name:"",
-        ingredient:""
+        ingredient:"",
     }
     
     ngOnInit(): void {
         this.service.searchListIngredient().subscribe((response: Partial<{ drinks: Ingredientlist[] }>)=>{
-            if(response.drinks) this.ingredientList = response.drinks
+            if(response.drinks) this.ingredientList = response.drinks.map(ingredient =>ingredient.strIngredient1);
         })
     }
 
 
     searchCocktailByName = () => {
+        this.jsonIn.ingredient=""
             this.service.searchCocktailByName(this.jsonIn.name).subscribe((response: Partial<Drinks>) => {
-                if (response.drinks) this.drinks = response.drinks;
+                if (response.drinks) {
+                    this.drinks = response.drinks
+                    return
+                };
+                this.drinks.length = 0
+                
             });
     };
 
     searchCocktailByIngredient = () => {
-
+this.jsonIn.name=""
             this.service.searchCocktailByIngredient(this.jsonIn.ingredient).subscribe((response: Partial<Drinks>) => {
-                console.log(response);
-                if (response.drinks) this.drinks = response.drinks;
+                if (response.drinks) {
+                    this.drinks = response.drinks;
+                    return
+                } 
+                this.drinks.length = 0
             });
     };
 }

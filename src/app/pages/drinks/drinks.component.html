@@ -2,9 +2,9 @@
     <div class="row mt-3 gy-4 mx-2">
         <div class="col-12 p-0 ">
             <div class="alert alert-secondary d-flex justify-content-around">
-                <span class="text-center">
+                <h1 class="text-center m-0 display-5">
                 The cocktailDB    
-                </span>
+                </h1>
                     <button [routerLink]="['/search']" class="btn btn-outline-primary align-self-flex-start" type="submit" id="button-addon1">Cerca
                         cocktail</button>
             </div>
@@ -14,8 +14,8 @@
                 <div class="col-12 col-md-8 col-lg-9">
                     <nav aria-label="Page navigation example" class="d-inline-block">
                         <ul class="pagination d-flex flex-wrap justify-content-center justify-content-md-start">
-                            <li *ngFor="let letter of alphabet" [class.active]="letter === selected" class="page-item">
-                                <a role="button" (click)="searchCocktailByLetter(letter)"
+                            <li *ngFor="let letter of alphabet" [class.active]="letter === letterToSearch" class="page-item" [routerLink]="['/drinks/',letter]">
+                                <a role="button"
                                     class="page-link">{{letter}}</a>
                             </li>
                         </ul>

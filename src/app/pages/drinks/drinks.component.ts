@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/_service/api.service';
 
 export interface Drink {
@@ -19,11 +20,16 @@ export interface Drinks {
     styleUrls: ['./drinks.component.scss'],
 })
 class DrinksComponent implements OnInit  {
-    constructor(private service: ApiService) {}
+    constructor(private service: ApiService,
+        private route: ActivatedRoute) {}
     ngOnInit(): void {
-      this.searchCocktailByLetter('a')
+        this.route.paramMap.subscribe((param)=>{
+            this.letterToSearch = param.get("letter") || this.letterToSearch
+            this.searchCocktailByLetter() 
+        })
     }
 
+    letterToSearch = "a"
     drinks: Drink[] = [];
     idDrink = '';
     alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -31,11 +37,10 @@ class DrinksComponent implements OnInit  {
     errorNotFound = false
     randomCocktail = false 
 
-    searchCocktailByLetter = (letter:string) => {
+    searchCocktailByLetter = () => {
         this.randomCocktail = false
         this.drinks.length=0
-        this.selected=letter
-            this.service.searchCocktailByFirstLetter(letter).subscribe((response: Partial<Drinks>) => {
+            this.service.searchCocktailByFirstLetter(this.letterToSearch).subscribe((response: Partial<Drinks>) => {
                 if (response.drinks) this.drinks = response.drinks;
                 !response.drinks?.length? this.errorNotFound= true : this.errorNotFound=false
                 
