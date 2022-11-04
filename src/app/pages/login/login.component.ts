@@ -22,7 +22,7 @@ export class LoginComponent {
      console.log(formIstance.form.invalid);
      console.log(formIstance.valid);
      
-    this.router.navigate(["home"])
+    this.router.navigate(["drinks"])
    }
    else{
      this.invalidForm = true;

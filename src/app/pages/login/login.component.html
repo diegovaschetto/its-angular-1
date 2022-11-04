@@ -2,7 +2,7 @@
   <form
     #loginForm="ngForm"
     (ngSubmit)="submit(loginForm)"
-    class="needs-validation col-4 mx-auto mt-5"
+    class="needs-validation col-10 col-md-6 col-lg-4 mx-auto mt-5"
     [class.was-validated]="invalidForm"
   >
     <div class="form-floating">
@@ -37,9 +37,9 @@
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
     <div>
-      <input type="checkbox" name="rememberMe" id="rememberMe " />
+      <input type="checkbox" name="rememberMe" id="rememberMe" />
       <label for="rememberMe">rememberMe</label>
     </div>
-    <button class="btn btn-primary" type="submit">Send</button>
+    <button class="btn btn-primary w-100" type="submit">Send</button>
   </form>
 </div>

@@ -13,6 +13,8 @@ import DrinksComponent from './pages/drinks/drinks.component';
 import DrinkComponent from './pages/drink/drink.component';
 import { SearchComponent } from './pages/search/search.component';
 import { IngredientComponent } from './pages/ingredient/ingredient.component';
+import { OrderComponent } from './pages/order/order.component';
+import { DrinkCustomComponent } from './pages/custom-drink/drink-custom.component';
 
 
 @NgModule({
@@ -24,14 +26,16 @@ import { IngredientComponent } from './pages/ingredient/ingredient.component';
     DrinksComponent,
     DrinkComponent,
     SearchComponent,
-    IngredientComponent
+    IngredientComponent,
+    OrderComponent,
+    DrinkCustomComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import DrinksComponent from './pages/drinks/drinks.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IngredientComponent } from './pages/ingredient/ingredient.component';
 import { LoginComponent } from './pages/login/login.component';
+import { OrderComponent } from './pages/order/order.component';
 import { SearchComponent } from './pages/search/search.component';
 import { LoginUserComponent } from './pages/user-login-profile/login-user-profile.component';
 
@@ -12,13 +13,12 @@ const routes: Routes = [
   {path:"login", component: LoginComponent},
   {path:"home", component: HomeComponent},
   {path:"login-user", component: LoginUserComponent},
-  {path:"drinks", component: DrinksComponent},
   {path:"drinks/:letter", component: DrinksComponent},
   {path:"search", component: SearchComponent},
   {path:"drink/:idDrink", component: DrinkComponent},
   {path:"ingredient/:ingredient", component: IngredientComponent},
-  { path: '',   redirectTo: 'drinks/a', pathMatch: 'full' },
-  { path: '**', component: DrinksComponent }
+  { path: '',   redirectTo: 'order', pathMatch: 'full' },
+  { path: '**', component: OrderComponent }
 ];
 
 @NgModule({
