@@ -1,21 +1,31 @@
-<div class="row w-75 m-5">
-    <input type="text" class="form-control" name="name" placeholder="Cerca per nome" [(ngModel)]="jsonIn.name">
-    <button class="btn btn-primary"  (click)="searchCocktailByName()">Cerca</button>
-</div>
-
 <div class="container-lg">
+<div class="row w-75 m-5 gy-2 mx-auto">
+    <input type="text" class="form-control" name="name" placeholder="Cerca per nome" [(ngModel)]="jsonIn.name" />
+    <button class="btn btn-primary" (click)="searchCocktailByName()">Cerca</button>
+</div>
+<div class="col-12 lead p-0">
+    <p>Numero di drink nel carrello: <span>{{cartDrinks.length}}</span></p>
+</div>
+    <div class="row d-flex mx-auto">
+        <ul class="list-group">
+            <app-list-component
+                *ngFor="let drink of cartDrinks"
+                (toggleEvent)="toggle($event)"
+                [drink]="drink"
+            ></app-list-component>
+        </ul>
+    </div>
+    <div class="col-12 lead p-0">
+        <p>Numero di risultati: <span>{{drinks.length}}</span></p>
+    </div>
     <div class="row d-flex justify-content-center justify-content-md-start mx-auto">
         <ul class="list-group">
-            <li class="list-group-item d-flex align-items-center justify-content-evenly" *ngFor="let drink of drinks">
-                <img class="me-1" src="https://cdn-icons-png.flaticon.com/128/60/60726.png" style="height:20px ; width: 20px;" *ngIf="drink.selected" (click)="toggle(drink)">
-                <img class="me-1" src="https://cdn-icons-png.flaticon.com/128/61/61221.png" style="height:20px ; width: 20px;" *ngIf="!drink.selected" (click)="toggle(drink)">
-                <label for="" class="form-check-label">{{drink.strDrink}}</label>
-                <img [src]="drink.strDrinkThumb" style="height:100px ; width: 100px;">
-            </li>
+            <app-list-component
+                *ngFor="let drink of drinks"
+                (toggleEvent)="toggle($event)"
+                [drink]="drink"
+            ></app-list-component>
         </ul>
         <div class="col-12 alert alert-warning" *ngIf="!this.drinks.length">Nessun risultato per questa lettera</div>
     </div>
 </div>
-
-
-

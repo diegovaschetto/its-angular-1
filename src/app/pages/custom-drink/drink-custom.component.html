@@ -1,8 +1,9 @@
-<div class="card">
-    <div class="card-body text-center ">
+<div class="card" aria-hidden="true">
+    <div class="card-body text-center">
         <h2 class="card-title ">{{drink.strDrink}}</h2>
-        <img [src]="drink.strDrinkThumb " [alt]=" 'picture of ' + drink.strDrink "
-            class="img-thumbnail card-img-top ">
+            <img *ngIf="!isImgLoaded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" class="img-thumbnail card-img-top " >
+            <img [hidden]="!isImgLoaded" [src]="drink.strDrinkThumb" (load)="isImgLoaded = true" class="img-thumbnail card-img-top " >
+
     </div>
     <a class="btn btn-primary w-75 mx-auto mb-2 ">Dettaglio</a>
 </div>

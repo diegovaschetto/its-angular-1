@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ApiService } from 'src/app/_service/api.service';
 
 
-interface Drink {
+export interface Drink {
     idDrink: string;
     strDrinkThumb: string;
     strDrink: string;
@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit  {
     constructor(private service: ApiService) {}
 
     drinks: Drink[] = [];
-
+    cartDrinks: Drink[]= []
     jsonIn = {
         name:"",
     }
@@ -36,6 +36,11 @@ export class OrderComponent implements OnInit  {
 
     toggle(drink:Drink){
         drink.selected=!drink.selected
+        if (drink.selected) {
+            this.cartDrinks.push(drink)
+        }else {
+            this.cartDrinks.splice(this.cartDrinks.indexOf(drink),1)
+        }
     }
 
     searchCocktailByName = () => {

@@ -9,12 +9,13 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginUserComponent } from './pages/user-login-profile/login-user-profile.component';
-import DrinksComponent from './pages/drinks/drinks.component';
 import DrinkComponent from './pages/drink/drink.component';
 import { SearchComponent } from './pages/search/search.component';
 import { IngredientComponent } from './pages/ingredient/ingredient.component';
 import { OrderComponent } from './pages/order/order.component';
 import { DrinkCustomComponent } from './pages/custom-drink/drink-custom.component';
+import { ListCustomComponent } from './pages/custom-list/list-custom.component';
+import { DrinksComponent } from './pages/drinks/drinks.component';
 
 
 @NgModule({
@@ -23,12 +24,13 @@ import { DrinkCustomComponent } from './pages/custom-drink/drink-custom.componen
     HomeComponent,
     LoginComponent,
     LoginUserComponent,
-    DrinksComponent,
     DrinkComponent,
     SearchComponent,
     IngredientComponent,
     OrderComponent,
-    DrinkCustomComponent
+    DrinkCustomComponent,
+    ListCustomComponent,
+    DrinksComponent
   ],
   imports: [
     BrowserModule,

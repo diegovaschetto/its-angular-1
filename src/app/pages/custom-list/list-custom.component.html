@@ -1,0 +1,6 @@
+<li class="list-group-item d-flex align-items-center justify-content-evenly" [class.list-group-item-secondary]="drink.selected" >
+    <img class="me-1" src="https://cdn-icons-png.flaticon.com/128/60/60726.png" style="height:20px ; width: 20px;" *ngIf="drink.selected" (click)="toggle(drink)">
+    <img class="me-1" src="https://cdn-icons-png.flaticon.com/128/61/61221.png" style="height:20px ; width: 20px;" *ngIf="!drink.selected" (click)="toggle(drink)">
+    <label class="form-check-label">{{drink.strDrink}}</label>
+    <img [src]="drink.strDrinkThumb" class="img-thumbnail" style="height:100px ; width: 100px;">
+</li>
