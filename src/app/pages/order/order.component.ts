@@ -24,6 +24,8 @@ export class OrderComponent implements OnInit  {
 
     drinks: Drink[] = [];
     cartDrinks: Drink[]= []
+    isSearched = false
+
     jsonIn = {
         name:"",
     }
@@ -34,8 +36,7 @@ export class OrderComponent implements OnInit  {
     }
 
 
-    toggle(drink:Drink){
-        drink.selected=!drink.selected
+    addToCart = (drink:Drink) => {
         if (drink.selected) {
             this.cartDrinks.push(drink)
         }else {
@@ -43,15 +44,22 @@ export class OrderComponent implements OnInit  {
         }
     }
 
+    toggleDrink(drink:Drink) {
+        if (this.cartDrinks.length === 5 ) return 
+        drink.selected =! drink.selected        
+        this.addToCart(drink)
+    }
+
     searchCocktailByName = () => {
             this.service.searchCocktailByName(this.jsonIn.name).subscribe((response: Partial<Drinks>) => {
                 if (response.drinks) {
                     this.drinks = response.drinks
                     this.drinks.forEach(drink=> {drink.strDrinkThumb = drink.strDrinkThumb+"/preview"; drink.selected=false})
+                    this.isSearched= true
                     return
                 };
-                this.drinks.length = 0
-                
+                this.isSearched= true
+               this.drinks = []
             });
     };
 

@@ -1,3 +1,4 @@
+<a class="btn btn-primary m-3" routerLink="/drinks">Torna alla lista dei drinks</a>
 <div class="container-lg">
     <div class="row g-4 d-flex justify-content-center justify-content-md-start">
         <div *ngFor=" let drink of drinks" role="button" [routerLink]="[ '/drink',drink.idDrink]"

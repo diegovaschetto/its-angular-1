@@ -9,7 +9,7 @@ import { Drink } from '../order/order.component';
 })
 export class ListCustomComponent {
     @Input() drink:any
-    @Output() toggleEvent = new EventEmitter();
+    @Output() toggleEvent = new EventEmitter<Drink>();
 
     toggle(drink: Drink) {
         this.toggleEvent.emit(drink);

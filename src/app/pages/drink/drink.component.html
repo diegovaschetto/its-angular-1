@@ -4,8 +4,22 @@
         <h2 class="card-header text-center">{{drink.strDrink}}</h2>
         <div class="card-body">
             <img [src]="drink.strDrinkThumb" alt="" class="card-img">
-            <p class="card-text text-muted mt-3">{{drink.strInstructionsIT}}</p>
-            <h3 class="text-center">Ingredienti</h3>
+            <div class="form-check mt-1">
+                <input class="form-check-input" type="radio" value="IT" name="flexRadioDefault" id="flexRadioDefault1" [(ngModel)]="lang">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Italiano
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="EN" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="lang">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  English
+                </label>
+              </div>
+            <p class="card-text text-muted mt-3" *ngIf="lang === 'IT'">{{drink.strInstructionsIT}}</p>
+            <p class="card-text text-muted mt-3" *ngIf="lang === 'EN'">{{drink.strInstructions}}</p>
+            <h3 class="text-center" *ngIf="lang === 'IT'">Ingredienti</h3>
+            <h3 class="text-center" *ngIf="lang === 'EN'">Ingredients</h3>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" *ngFor="let prop of ingredientsList"><a class="link-primary" [routerLink]="['/ingredient', regExpSearch(prop.name)]">{{prop.name}}</a> {{prop.measure}}</li>
               </ul>

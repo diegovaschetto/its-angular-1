@@ -3,14 +3,17 @@
     <input type="text" class="form-control" name="name" placeholder="Cerca per nome" [(ngModel)]="jsonIn.name" />
     <button class="btn btn-primary" (click)="searchCocktailByName()">Cerca</button>
 </div>
+<div class="col-12 alert alert-warning" *ngIf="!this.drinks.length && isSearched">Nessun risultato per questa lettera</div>
+<div class="col-12 alert alert-warning" *ngIf="cartDrinks.length < 2 && isSearched && this.drinks.length ">Minimo 2 selezionabili</div>
+<div class="col-12 alert alert-warning" *ngIf="cartDrinks.length === 5">Max 5 selezionabili</div>
 <div class="col-12 lead p-0">
     <p>Numero di drink nel carrello: <span>{{cartDrinks.length}}</span></p>
 </div>
-    <div class="row d-flex mx-auto">
-        <ul class="list-group">
+<div class="row d-flex mx-auto">
+    <ul class="list-group">
             <app-list-component
                 *ngFor="let drink of cartDrinks"
-                (toggleEvent)="toggle($event)"
+                (toggleEvent)="toggleDrink($event)"
                 [drink]="drink"
             ></app-list-component>
         </ul>
@@ -22,10 +25,9 @@
         <ul class="list-group">
             <app-list-component
                 *ngFor="let drink of drinks"
-                (toggleEvent)="toggle($event)"
+                (toggleEvent)="toggleDrink($event)"
                 [drink]="drink"
             ></app-list-component>
         </ul>
-        <div class="col-12 alert alert-warning" *ngIf="!this.drinks.length">Nessun risultato per questa lettera</div>
     </div>
 </div>

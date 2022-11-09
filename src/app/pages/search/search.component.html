@@ -1,19 +1,29 @@
-<div class="row w-50 m-5">
-    <input type="text" class="form-control" name="name" placeholder="Cerca per nome" [(ngModel)]="jsonIn.name">
-    <button class="btn btn-primary"  (click)="searchCocktailByName()">Cerca</button>
-    <select name="ingredient" [(ngModel)]="jsonIn.ingredient" (change)="searchCocktailByIngredient()">
-        <option value="" disabled>Select one ..</option>
-        <option *ngFor="let ingredient of ingredientList" [value]="ingredient">{{ingredient}}</option>
-    </select>
-</div>
-
-<div class="container-lg">
-    <div class="row g-4 d-flex justify-content-center justify-content-md-start">
-        <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]"
-            class=" col-10 col-sm-6 col-md-3 col-lg-3">
-            <app-drink-component [drink]="drink"></app-drink-component>
+<div class="container-fluid">
+    <a class="btn btn-primary m-3" routerLink="/drinks">Torna alla lista dei drinks</a>
+    
+    <div class="row m-4 gy-3 justify-content-center">
+        <div class="col-11 col-sm-8 col-md-5 col-lg-3">
+            <input type="text" class="form-control mb-1" name="name" placeholder="Cerca per drink per nome" aria-label="drink search" [(ngModel)]="jsonIn.name">
+            <button class="btn btn-primary w-100"  (click)="searchCocktailByName()" [disabled]="!jsonIn.name">Cerca</button>
         </div>
-        <div class="col-12 alert alert-warning" *ngIf="!this.drinks.length">Nessun risultato per questa lettera</div>
+        <div class="col-11 col-sm-8 col-md-5 col-lg-3">
+            <select class="form-select" name="ingredient" [(ngModel)]="jsonIn.ingredient" (change)="searchCocktailByIngredient()">
+                <option value="" disabled>Select one ..</option>
+                <option *ngFor="let ingredient of ingredientList" [value]="ingredient">{{ingredient}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-12 lead p-0">
+        <p>Numero di risultati: <span>{{drinks.length}}</span></p>
+    </div>
+    <div class="container-lg">
+        <div class="row g-4 d-flex justify-content-center justify-content-md-start">
+            <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]"
+                class=" col-10 col-sm-6 col-md-3 col-lg-3">
+                <app-drink-component [drink]="drink"></app-drink-component>
+            </div>
+            <div class="col-10 alert alert-warning" *ngIf="!this.drinks.length && isSearched">Nessun risultato per questa lettera</div>
+        </div>
     </div>
 </div>
 

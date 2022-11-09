@@ -29,6 +29,7 @@ class DrinkComponent implements OnInit {
     idDrink: string = '';
     ingredientsList: IngredientAndMeasure[] = [];
     drink : DrinkProp | any
+    lang="EN"
 
     ngOnInit(): void {
         const urlRoot =
@@ -41,6 +42,7 @@ class DrinkComponent implements OnInit {
             .get(urlRoot + this.idDrink)
             .subscribe((response: Partial<DrinkApi>) => {
                 this.drink = response.drinks![0];
+                console.log(this.drink)
                 this.ingredients();
             });
     }
