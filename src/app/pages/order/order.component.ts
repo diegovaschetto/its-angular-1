@@ -8,6 +8,7 @@ export interface Drink {
     strDrink: string;
     strAlcoholic: string;
     selected?:boolean
+    inCart?:boolean
 }
 
 
@@ -19,7 +20,7 @@ interface Drinks {
     selector: 'app-order',
     templateUrl: './order.component.html',
 })
-export class OrderComponent implements OnInit  {
+export class OrderComponent implements OnInit {
     constructor(private service: ApiService) {}
 
     drinks: Drink[] = [];
@@ -29,23 +30,31 @@ export class OrderComponent implements OnInit  {
     jsonIn = {
         name:"",
     }
-    
-   
-    ngOnInit(): void {
-        
-    }
 
+    ngOnInit(): void {
+        if (sessionStorage.getItem("cart")) {
+            this.cartDrinks = JSON.parse(sessionStorage.getItem("cart")!)
+        } 
+    }
 
     addToCart = (drink:Drink) => {
         if (drink.selected) {
             this.cartDrinks.push(drink)
+            sessionStorage.setItem("cart",JSON.stringify(this.cartDrinks))
         }else {
             this.cartDrinks.splice(this.cartDrinks.indexOf(drink),1)
+            sessionStorage.setItem("cart",JSON.stringify(this.cartDrinks))
         }
     }
 
     toggleDrink(drink:Drink) {
-        if (this.cartDrinks.length === 5 ) return 
+        if (this.cartDrinks.length === 5 ) {
+            if (drink.selected ) {
+                drink.selected =!drink.selected;
+                this.addToCart(drink)  
+            }
+            return  
+        } 
         drink.selected =! drink.selected        
         this.addToCart(drink)
     }

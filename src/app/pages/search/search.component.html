@@ -12,6 +12,9 @@
                 <option *ngFor="let ingredient of ingredientList" [value]="ingredient">{{ingredient}}</option>
             </select>
         </div>
+        <div class="col-11 col-sm-8 col-md-5 col-lg-3">
+            <a class="btn btn-warning w-100" routerLink="/order">Ordina un drink</a>
+        </div>
     </div>
     <div class="col-12 lead p-0">
         <p>Numero di risultati: <span>{{drinks.length}}</span></p>

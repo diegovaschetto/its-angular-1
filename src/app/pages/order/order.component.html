@@ -1,7 +1,8 @@
 <div class="container-lg">
-<div class="row w-75 m-5 gy-2 mx-auto">
+    <a class="btn btn-primary m-3" routerLink="/drinks">Torna alla lista dei drinks</a>
+<div class="row w-75 m-3 gy-2 mx-auto">
     <input type="text" class="form-control" name="name" placeholder="Cerca per nome" [(ngModel)]="jsonIn.name" />
-    <button class="btn btn-primary" (click)="searchCocktailByName()">Cerca</button>
+    <button [disabled]="!jsonIn.name" class="btn btn-primary" (click)="searchCocktailByName()">Cerca</button>
 </div>
 <div class="col-12 alert alert-warning" *ngIf="!this.drinks.length && isSearched">Nessun risultato per questa lettera</div>
 <div class="col-12 alert alert-warning" *ngIf="cartDrinks.length < 2 && isSearched && this.drinks.length ">Minimo 2 selezionabili</div>

@@ -41,6 +41,7 @@ export class DrinksComponent implements OnInit {
         this.drinks.length = 0;
         this.service.searchCocktailByFirstLetter(this.letterToSearch).subscribe((response: Partial<Drinks>) => {
             if (response.drinks) this.drinks = response.drinks;
+            this.drinks.sort((a,b)=>a.strDrink.localeCompare(b.strDrink))
             !response.drinks?.length ? (this.errorNotFound = true) : (this.errorNotFound = false);
         });
     };
