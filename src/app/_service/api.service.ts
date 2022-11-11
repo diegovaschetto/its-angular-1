@@ -13,6 +13,11 @@ export class ApiService {
         return this.httpClient.get(URL)  //metodo get ha un solo parametro che è url, in modello restFul, restituisce un'observable => prevedono possibilità di averer più valori e viene gestito con subscribe() che sarebbe come iscriversi ad una nuova newsletter e stare in ascolto per tutte volte che viene rilasciata una nuova newsletter
     }
 
+    searchCocktailById(id:string){
+        const URL= 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + id;
+        return this.httpClient.get(URL)
+    }
+
     searchCocktailByName(name: string) {
         const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + name;
         return this.httpClient.get(URL)  //metodo get ha un solo parametro che è url, in modello restFul, restituisce un'observable => prevedono possibilità di averer più valori e viene gestito con subscribe() che sarebbe come iscriversi ad una nuova newsletter e stare in ascolto per tutte volte che viene rilasciata una nuova newsletter

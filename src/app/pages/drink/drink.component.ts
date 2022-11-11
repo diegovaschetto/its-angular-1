@@ -9,7 +9,7 @@ interface DrinkProp extends Record<string, any> {
     strDrinkThumb: string;
 }
 
-interface DrinkApi {
+export interface DrinkApi {
     drinks: DrinkProp[];
 }
 
@@ -26,23 +26,15 @@ interface IngredientAndMeasure {
 class DrinkComponent implements OnInit {
     constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
-    idDrink: string = '';
     ingredientsList: IngredientAndMeasure[] = [];
     drink : DrinkProp | any
     lang="EN"
 
     ngOnInit(): void {
-        const urlRoot =
-            'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
-        this.route.paramMap.subscribe((params) => {
-            this.idDrink = params.get('idDrink') as string;
-        });
 
-        this.http
-            .get(urlRoot + this.idDrink)
-            .subscribe((response: Partial<DrinkApi>) => {
-                this.drink = response.drinks![0];
-                console.log(this.drink)
+        this.route.data
+            .subscribe((response: Partial<{drink:DrinkApi}>) => {
+                this.drink = response.drink?.drinks![0];
                 this.ingredients();
             });
     }

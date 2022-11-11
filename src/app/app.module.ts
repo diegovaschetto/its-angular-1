@@ -16,6 +16,8 @@ import { OrderComponent } from './pages/order/order.component';
 import { DrinkCustomComponent } from './pages/custom-drink/drink-custom.component';
 import { ListCustomComponent } from './pages/custom-list/list-custom.component';
 import { DrinksComponent } from './pages/drinks/drinks.component';
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIHttpModule } from 'ng-block-ui/http';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { DrinksComponent } from './pages/drinks/drinks.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BlockUIModule.forRoot(),
+    BlockUIHttpModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

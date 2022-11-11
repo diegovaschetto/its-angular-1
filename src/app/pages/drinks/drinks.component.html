@@ -35,7 +35,7 @@
             <div class="row g-4 d-flex justify-content-center justify-content-md-start">
                 <div *ngFor=" let drink of drinks " role="button" [routerLink]="[ '/drink',drink.idDrink]"
                     class=" col-10 col-sm-6 col-md-3 col-lg-3">
-                    <div class="card" [class.text-bg-success]="randomCocktail">
+                    <div class="card" [class.text-bg-success]="randomCocktail" *blockUI="'hero-section'">
                         <div class="card-body text-center ">
                             <h2 class="card-title ">{{drink.strDrink}}</h2>
                             <img [src]="drink.strDrinkThumb " [alt]=" 'picture of ' + drink.strDrink "
