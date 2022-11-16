@@ -28,5 +28,6 @@ export class IngredientComponent implements OnInit {
       .subscribe((response: Partial<{ingredient:Drinks}>) => {
       if (response.ingredient?.drinks) this.drinks = response.ingredient?.drinks;
     });
+    window.scrollTo(0,0);
   }
 }

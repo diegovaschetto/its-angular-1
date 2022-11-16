@@ -25,3 +25,23 @@ export class DrinkResolverByIngredient implements Resolve<Partial<Drinks>> {
     return this.service.searchCocktailByIngredient(route.paramMap.get('ingredient')!);
   }
 }
+
+@Injectable({ providedIn: 'root' })
+export class DrinkResolverByLetter implements Resolve<Partial<Drinks>> {
+  constructor(private service: ApiService) {}
+
+  resolve(
+    route: ActivatedRouteSnapshot,
+  ) {
+    return this.service.searchCocktailByFirstLetter(route.paramMap.get('letter')!);
+  }
+}
+
+@Injectable({ providedIn: 'root' })
+export class DrinkResolverRandom implements Resolve<Partial<Drinks>> {
+  constructor(private service: ApiService) {}
+
+  resolve() {
+    return this.service.searchCocktailRandom();
+  }
+}
