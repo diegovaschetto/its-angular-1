@@ -33,7 +33,7 @@ const routes: Routes = [
     component: IngredientComponent,
     resolve: { ingredient: DrinkResolverByIngredient },
   },
-  { path: "", redirectTo: "order", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "**", component: OrderComponent },
 ];
 
